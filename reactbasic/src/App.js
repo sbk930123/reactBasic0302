@@ -1,57 +1,54 @@
 /* eslint-disable */
 import logo from './logo.svg';
 import './App.css';
-import {useState,} from 'react';
+import { useState } from 'react';
 
 function App() {
 
-  let user = 'SBK';
-  // react에서 변수처럼 자료를 보관할 수 있는 state문법
-  let [count1, setCount1] = useState(0);
-  let [count2, setCount2] = useState(0);
+  let [user, setUser] = useState(['김승빈', '인호성', '김상현', '여상현']);
+  let [count, setCount] = useState([0, 0, 0]);
   let [bgc, setBgc] = useState('white');
-  // 변수에 들어있는 데이터를 html에 넣기
-  // JSX 중괄호 문법 사용
-  
-
-
+  let num = [1, 2, 3, 4, 5];
   let [title, setTitle] = useState(['DW아카데미 503호', 'DW아카데미 501호', 'DW아카데미 502호',]);
+  let eng = ['yejin', 'lee', 'lala']
+
+  let newUser = [...user];
+  console.log(newUser);
+  console.log(user);
+  console.log([...user]);
+  console.log(eng);
+
 
   return (
-    <div className="App" style={{backgroundColor : bgc}}>
-      <h1> Hello, {user} ! </h1>
+    <div className="App" style={{ backgroundColor: bgc }}>
+      <h1> Hello, {user[0]} ! </h1>
       <p>This is a React App</p>
 
-      <div>
-        <p>클릭시 + {count1}</p>
-        <button onClick={() => {
-          setCount1(count1 + 1)
-        }}>Click Me</button>
-      </div>
 
-      <div className="list">
-        <h4>{title[0]}</h4>
-        <span onClick={() => {
-          setCount2(count2 + 1)
-        }}>👺 + {count2}</span><br/>
-        <p>안녕하세요. 저는 김승빈입니다.</p>
-      </div>
+      {
+        eng.map(function(leng) {
+          return leng.toUpperCase();
+        })
+      }
 
-      <div className="list">
-        <h4>{title[1]}</h4>
-        <span onClick={() => {
-          setCount2(count2 + 1)
-        }}>👺 + {count2}</span><br/>
-        <p>안녕하세요. 저는 김승빈입니다.</p>
-      </div>
 
-      <div className="list">
-        <h4>{title[2]}</h4>
-        <span onClick={() => {
-          setCount2(count2 + 1)
-        }}>👺 + {count2}</span><br/>
-        <p>안녕하세요. 저는 김승빈입니다.</p>
-      </div>
+
+
+      {
+        title.map(function (tnum, i) {
+          return (
+            <div className="list" key={i}>
+              <h4>{tnum}</h4>
+              <span onClick={() => {
+                let newCount = [...count];
+                newCount[i] += 1;
+                setCount(newCount);
+              }}>👺 + {count[i]}</span><br />
+              <p>안녕하세요. 저는 {user[i]} 입니다.</p>
+            </div>
+          )
+        })
+      }
 
       <button onClick={() => {
         let sortedTitle = [...title].sort();
@@ -60,8 +57,15 @@ function App() {
       </button>
 
       <button onClick={() => {
-        setBgc(bgc == 'white' ? 'aquamarine' : 'white');
+        setBgc(bgc === 'white' ? 'aquamarine' : 'white');
       }}>배경 변경</button>
+
+      <button onClick={() => {
+        let nextUser = [...user];
+        let prevUser = nextUser.shift();
+        nextUser.push(prevUser);
+        setUser(nextUser);
+      }}>이름 변경</button> 
 
     </div>
   );
