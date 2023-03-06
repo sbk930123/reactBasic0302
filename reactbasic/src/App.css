@@ -4,13 +4,8 @@
   box-sizing: border-box;
 }
 
-span {
-  cursor: pointer;
-  user-select: none;
-}
-
 .list {
-  border: 1px solid red;
+  border: 1px solid #ccc;
   border-radius: 5px;
   margin: 10px;
 }
