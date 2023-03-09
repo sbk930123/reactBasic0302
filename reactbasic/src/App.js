@@ -5,11 +5,12 @@ import State from './component/State';
 import {useState} from 'react';
 import Box from './component/Box';
 import Comment from './component/Comment';
+import CommentList from './component/CommentList'
 
 function App() {
   return (
     <div className='App'>
-      <Comment/>
+      <CommentList/>
     </div>
   )
 }
